@@ -1,21 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Header from "./components/Header";
-import './scss/app.scss';
+import { ForumList } from "./components/ForumList";
+import "./scss/app.scss";
 
-class HelloMessage extends React.Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        <div className="container">
-          <h1>Hello {this.props.name}</h1>
-        </div>
+function HelloMessage() {
+  return (
+    <div>
+      <Header />
+      <div className="container">
+        <ForumList />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-let App = document.getElementById("app");
+let el = document.getElementById("app");
 
-ReactDOM.render(<HelloMessage name="Yomi" />, App);
+ReactDOM.render(<HelloMessage name="Yomi" />, el);
