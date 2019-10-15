@@ -3,25 +3,3 @@
     width: 100%;
 }
 
-.post-content {
-    white-space: pre-wrap
-}
-
-.post-container {
-    border: 1px solid black;
-    margin: 0 5% 0 5%;
-    text-align: left;
-    padding: 10px;
-    border-radius: 5px;
-
-    cursor: pointer;
-    
-    &:hover {
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        transition: box-shadow 0.1s ease-in-out;
-    }
-}
-.post-title {
-    font-size: 20px;
-    font-weight: 800;
-}
