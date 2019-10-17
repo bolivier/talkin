@@ -9,7 +9,7 @@ import { createStore } from "redux";
 import rootReducer from "./ducks/rootReducer";
 import { Provider } from "react-redux";
 
-function HelloMessage() {
+function App() {
   return (
     <Provider store={createStore(rootReducer)}>
       <Router>
@@ -33,4 +33,4 @@ function HelloMessage() {
 
 let el = document.getElementById("app");
 
-ReactDOM.render(<HelloMessage name="Yomi" />, el);
+ReactDOM.render(<App />, el);

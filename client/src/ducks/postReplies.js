@@ -2,8 +2,12 @@ import { set } from "lodash/fp";
 
 const initialState = {
   1: [
-    { id: 0, content: `Hey, this comment fuckin sucks, man!` },
-    { id: 1, content: `^ this` }
+    {
+      id: 0,
+      content: `Hey, this comment fuckin sucks, man!`,
+      postedAt: new Date()
+    },
+    { id: 1, content: `^ this`, postedAt: new Date() }
   ]
 };
 
@@ -18,12 +22,13 @@ export default function postRepliesReducer(
         ...state[payload.postId],
         {
           id: Math.floor(Math.random() * 1000),
-          content: payload.content
+          content: payload.content,
+          postedAt: new Date()
         }
       ]
     };
   } else {
-      return state;
+    return state;
   }
 }
 

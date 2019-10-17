@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "date-fns": "^2.5.0",
     "global": "^4.4.0",
     "lodash": "^4.17.15",
     "node-sass": "^4.12.0",

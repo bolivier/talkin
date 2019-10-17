@@ -13,7 +13,6 @@ export function PostDraftingInputArea({ postId }) {
   };
 
     const onClick = () => {
-        console.log('dispatching: ', draft, postId);
         dispatch(postReplyActions.addReply(draft, postId));
   };
 
