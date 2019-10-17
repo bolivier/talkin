@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { postSelectors } from "../ducks/posts";
 import { Post } from "./Post";
 import { PostReplies } from "./PostReplies";
+import { PostDraftingInputArea } from './PostDraftingInputArea';
 
 export function PostPage() {
   const {
@@ -14,6 +15,7 @@ export function PostPage() {
     <div className="post-page-container">
       <Post post={post} />
       <PostReplies post={post} />
+      <PostDraftingInputArea postId={post.id} />
     </div>
   );
 }

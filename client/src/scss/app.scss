@@ -1,17 +1,27 @@
 body {
-  background-color: #fefefe;
-  text-align: center;
-  .navbar {
-    background: #21374B;
-    color: #E7DACB;
-    height: 50px;
-  }
-  h1 {
-    font-size: 40px;
-    margin-top: 30px;
-  }
+    background-color: #fefefe;
+    .navbar {
+        background: #21374B;
+        color: #E7DACB;
+        height: 50px;
+    }
+    h1 {
+        font-size: 40px;
+        margin-top: 30px;
+    }
 }
 
 .nav-title {
     color: #fefefe;
+}
+
+.post-button-row {
+    display: flex;
+    justify-content: end;
+}
+
+.reply-area-container {
+    align-text: left;
+    display: flex;
+    justify-content: center;
 }
