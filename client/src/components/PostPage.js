@@ -5,17 +5,30 @@ import { postSelectors } from "../ducks/posts";
 import { Post } from "./Post";
 import { PostReplies } from "./PostReplies";
 import { PostDraftingInputArea } from './PostDraftingInputArea';
+import { usePostReplies } from '../apiHooks/usePostReplies';
+import { usePostReplyData } from '../apiHooks/usePostReplyData';
+import { usePosts } from '../apiHooks/usePosts';
+import { get } from 'lodash/fp';
 
 export function PostPage() {
   const {
     params: { postId }
   } = useRouteMatch();
-  const post = useSelector(postSelectors.post(postId));
+    usePosts();
+    const post = useSelector(postSelectors.post(postId));
+
+    usePostReplyData(postId);
+    const [postReplies, addPostReply] = usePostReplies(postId);
+
+    if (!post) {
+        return null;
+    }
+
   return (
     <div className="post-page-container">
       <Post post={post} />
       <PostReplies post={post} />
-      <PostDraftingInputArea postId={post.id} />
+      <PostDraftingInputArea postId={postId} />
     </div>
   );
 }

@@ -6,9 +6,11 @@ import { map } from "lodash/fp";
 import { formatDistance } from "date-fns";
 
 export function PostReplies({ post }) {
-  const postReplies = useSelector(postReplySelectors.replies(post.id));
-
   useCyclicRefresh(1000);
+  if (!post) {
+    return null;
+  }
+  const postReplies = useSelector(postReplySelectors.replies(post.id));
 
   return (
     <div className="replies">
@@ -26,5 +28,4 @@ export function PostReplies({ post }) {
       )}
     </div>
   );
-  return <pre>{JSON.stringify(postReplies, null, 2)}</pre>;
 }
