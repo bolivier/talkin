@@ -9,9 +9,14 @@ import { createStore } from "redux";
 import rootReducer from "./ducks/rootReducer";
 import { Provider } from "react-redux";
 
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
 function App() {
   return (
-    <Provider store={createStore(rootReducer)}>
+    <Provider store={store}>
       <Router>
         <div>
           <Header />
