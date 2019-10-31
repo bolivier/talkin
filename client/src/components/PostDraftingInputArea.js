@@ -1,8 +1,9 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { draftSelectors, draftActions } from "../ducks/draft";
-import { postReplyActions } from "../ducks/postReplies";
-import "../scss/app.scss";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { draftSelectors, draftActions } from '../ducks/draft';
+import { postReplyActions } from '../ducks/postReplies';
+import '../scss/app.scss';
+import { createReply } from '../api/posts';
 
 export function PostDraftingInputArea({ postId }) {
   const draft = useSelector(draftSelectors.draft);
@@ -12,8 +13,12 @@ export function PostDraftingInputArea({ postId }) {
     dispatch(draftActions.updateDraft(e.target.value));
   };
 
-    const onClick = () => {
-        dispatch(postReplyActions.addReply(draft, postId));
+  const onClick = () => {
+    createReply(draft).then(reply => {
+      console.log(reply);
+
+      dispatch(postReplyActions.addReply(reply, postId));
+    });
   };
 
   return (
@@ -31,7 +36,9 @@ export function PostDraftingInputArea({ postId }) {
           cols="33"
         />
         <div className="post-button-row">
-          <button onClick={onClick}>Post</button>
+          <button className="btn" onClick={onClick}>
+            Post
+          </button>
         </div>
       </div>
     </div>

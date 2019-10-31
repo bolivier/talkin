@@ -1,28 +1,27 @@
-import React from "react";
-import { useRouteMatch } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { postSelectors } from "../ducks/posts";
-import { Post } from "./Post";
-import { PostReplies } from "./PostReplies";
+import React from 'react';
+import { useRouteMatch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { postSelectors } from '../ducks/posts';
+import { Post } from './Post';
+import { PostReplies } from './PostReplies';
 import { PostDraftingInputArea } from './PostDraftingInputArea';
 import { usePostReplies } from '../apiHooks/usePostReplies';
 import { usePostReplyData } from '../apiHooks/usePostReplyData';
 import { usePosts } from '../apiHooks/usePosts';
-import { get } from 'lodash/fp';
+import { PostNotFoundPage } from './PostNotFoundPage';
 
 export function PostPage() {
   const {
-    params: { postId }
+    params: { postId },
   } = useRouteMatch();
-    usePosts();
-    const post = useSelector(postSelectors.post(postId));
+  const post = useSelector(postSelectors.post(postId));
 
-    usePostReplyData(postId);
-    const [postReplies, addPostReply] = usePostReplies(postId);
+  usePostReplyData(postId);
+  const [postReplies, addPostReply] = usePostReplies(postId);
 
-    if (!post) {
-        return null;
-    }
+  if (!post) {
+    return <PostNotFoundPage />;
+  }
 
   return (
     <div className="post-page-container">

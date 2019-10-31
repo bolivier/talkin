@@ -1,4 +1,4 @@
-import { set } from "lodash/fp";
+import { set } from 'lodash/fp';
 
 const initialState = {};
 
@@ -7,19 +7,12 @@ export default function postRepliesReducer(
   { type, payload }
 ) {
   switch (type) {
-      case "SET_REPLIES":
-          return payload;
-    case "ADD_REPLY":
+    case 'SET_REPLIES':
+      return payload;
+    case 'ADD_REPLY':
       return {
         ...state,
-        [payload.postId]: [
-          ...state[payload.postId],
-          {
-            id: Math.floor(Math.random() * 1000),
-            content: payload.content,
-            postedAt: new Date()
-          }
-        ]
+        [payload.postId]: (state[payload.postId] || []).concat(payload.reply),
       };
 
     default:
@@ -28,12 +21,12 @@ export default function postRepliesReducer(
 }
 
 export const postReplySelectors = {
-  replies: id => state => state.postReplies[id]
+  replies: id => state => state.postReplies[id],
 };
 
 export const postReplyActions = {
-  addReply: (content, postId) => ({
-    type: "ADD_REPLY",
-    payload: { content, postId }
-  })
+  addReply: (reply, postId) => ({
+    type: 'ADD_REPLY',
+    payload: { reply, postId },
+  }),
 };
