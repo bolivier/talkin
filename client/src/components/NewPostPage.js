@@ -6,11 +6,12 @@ import { postActions } from '../ducks/posts';
 
 export function NewPostPage() {
   const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [newPostId, setNewPostId] = useState(null);
   const dispatch = useDispatch();
   const onClickPost = () => {
-    createNewPost(text).then(post => {
+    createNewPost(text, title).then(post => {
       dispatch(postActions.addPost(post));
       setNewPostId(post.id);
       setShouldRedirect(true);
@@ -22,6 +23,11 @@ export function NewPostPage() {
   return (
     <div className="new-post-page-container">
       <h2>Create a new post</h2>
+      <input
+        placeholder="title"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+      />
       <div>
         <textarea
           value={text}

@@ -26,17 +26,19 @@ export function getPostReplies(postId) {
   });
 }
 
-export function createNewPost(postContent) {
+export function createNewPost(postContent, title) {
   return Promise.resolve({
     id: generateFakeId(),
     content: postContent,
+    title,
     postedAt: new Date(),
   });
 }
 
-export function createReply(content, postId) {
+export function createReply(content, title, postId) {
   return Promise.resolve({
     id: generateFakeId(),
+    title,
     content,
     postedAt: new Date(),
   });
